@@ -1,0 +1,222 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Deposit</title>
+<link rel="stylesheet" type="text/css" href="css/main.css" />
+</head>
+<body>
+<div class="pay">
+	<!--主内容开始编辑-->
+	<div class="tr_recharge">
+		<form action="" class="am-form" id="doc-vld-msg">
+			<div class="tr_rechbox">
+				<div class="tr_rechhead">
+					<p>Account：
+						<a id="uid">--</a>
+					</p>
+					<div class="tr_rechheadcion">
+						<span>₹<span id="balance">--</span>
+						<p>Balance</p>
+						</span>
+					</div>
+				</div>
+				<div class="tr_rechli am-form-group">
+					<ul class="ui-choose am-form-group" id="uc_01">
+						<li>
+							<label class="am-radio-inline">
+									<input type="radio"  value="" name="docVlGender" required data-validation-message="choose payment"> ₹100
+								</label>
+						</li>
+						<li>
+							<label class="am-radio-inline">
+									<input type="radio" name="docVlGender" data-validation-message="choose payment"> ₹300
+								</label>
+						</li>
+
+						<li>
+							<label class="am-radio-inline">
+									<input type="radio" name="docVlGender" data-validation-message="choose payment"> ₹500
+								</label>
+						</li>
+						<li>
+							<label class="am-radio-inline">
+								<input type="radio" name="docVlGender" data-validation-message="choose payment"> ₹1000
+							</label>
+						</li>
+						<li>
+							<label class="am-radio-inline">
+								<input type="radio" name="docVlGender" data-validation-message="choose payment"> ₹3000
+							</label>
+						</li>
+						<li>
+							<label class="am-radio-inline">
+								<input type="radio" name="docVlGender" data-validation-message="choose payment"> ₹10000
+							</label>
+						</li>
+						<li>
+							<label class="am-radio-inline">
+								<input type="radio" name="docVlGender" data-validation-message="choose payment"> ₹30000
+							</label>
+						</li>
+						<li>
+							<label class="am-radio-inline">
+								<input type="radio" name="docVlGender" data-validation-message="choose payment"> ₹50000
+							</label>
+						</li>
+						<!--<li>
+							<label class="am-radio-inline">
+									<input type="radio" name="docVlGender" data-validation-message="choose payment"> Other
+								</label>
+						</li>-->
+					</ul>
+
+				</div>
+				<!--<div class="tr_rechoth am-form-group">
+					<span>Other amount：</span>
+					<input type="number" min="100" max="50000" value="100.00Rs" class="othbox" data-validation-message="Recharge amount range：100-50000Rs" />
+				</div>-->
+				<div class="tr_rechcho am-form-group">
+					<span>Choose payment：</span>
+					<label class="am-radio">
+							<input type="radio" name="radio1" value="" data-am-ucheck required data-validation-message="choose payment"><img src="images/upi_icon.png">
+						</label>
+					<!--<label class="am-radio" style="margin-right:30px;">
+							<input type="radio"  name="radio1" value="" data-am-ucheck data-validation-message="choose payment"><img src="images/paytm_icon.png">
+						</label>-->
+				</div>
+				<div class="tr_rechnum">
+					<span>Recharge amount：</span>
+					<p class="rechnum" id="amount">₹100.00</p>
+				</div>
+			</div>
+			<div class="tr_paybox">
+				<input id="button" type="submit"  value="Recharge"  class="tr_pay am-btn" />
+			</div>
+
+
+		</form>
+	</div>
+
+	<!--<div id="twoBox">
+		<div class="twoBox_lever">
+			<div class="twoBox_lever_two">
+				<div class="two_title">
+					<p>创建新用户</p>
+				</div>
+				<form>
+					<label style="float:left">名字：
+						<input type="text" placeholder="请输入名字">
+					</label>
+					<label style="float:left">邮箱：
+						<input type="text" placeholder="请输入邮箱">
+					</label>
+					<label style="float:left">密码：
+						<input type="password" placeholder="请输入密码">
+					</label>
+				</form>
+				<div class="two_footer">
+					<button>创建一个用户</button>
+					<button>取消</button>
+				</div>
+			</div>
+		</div>
+	</div>-->
+</div>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/amazeui.min.js"></script>
+<script type="text/javascript" src="js/ui-choose.js"></script>
+<script type="text/javascript" src="js/ajax.js"></script>
+<script type="text/javascript" src="js/deposit.js"></script>
+<script type="text/javascript">
+	// 将所有.ui-choose实例化
+	$('.ui-choose').ui_choose();
+	// uc_01 ul 单选
+	var uc_01 = $('#uc_01').data('ui-choose'); // 取回已实例化的对象
+	uc_01.click = function(index, item) {
+		//console.log('click', index, item.text())
+	}
+	uc_01.change = function(index, item) {
+		//console.log('change', index, item.text())
+	}
+	$(function() {
+		$('#uc_01 li:eq(8)').click(function() {
+			$('.tr_rechoth').show();
+			$('.tr_rechoth').find("input").attr('required', 'true')
+			$('.rechnum').text('₹100.00');
+		})
+		$('#uc_01 li:eq(0)').click(function() {
+			$('.tr_rechoth').hide();
+			$('.rechnum').text('₹100.00');
+			$('.othbox').val('');
+		})
+		$('#uc_01 li:eq(1)').click(function() {
+			$('.tr_rechoth').hide();
+			$('.rechnum').text('₹300.00');
+			$('.othbox').val('');
+		})
+		$('#uc_01 li:eq(2)').click(function() {
+			$('.tr_rechoth').hide();
+			$('.rechnum').text('₹500.00');
+			$('.othbox').val('');
+		})
+		$('#uc_01 li:eq(3)').click(function() {
+			$('.tr_rechoth').hide();
+			$('.rechnum').text('₹1000.00');
+			$('.othbox').val('');
+		})
+		$('#uc_01 li:eq(4)').click(function() {
+			$('.tr_rechoth').hide();
+			$('.rechnum').text('₹3000.00');
+			$('.othbox').val('');
+		})
+		$('#uc_01 li:eq(5)').click(function() {
+			$('.tr_rechoth').hide();
+			$('.rechnum').text('₹10000.00');
+			$('.othbox').val('');
+		})
+		$('#uc_01 li:eq(6)').click(function() {
+			$('.tr_rechoth').hide();
+			$('.rechnum').text('₹30000.00');
+			$('.othbox').val('');
+		})
+		$('#uc_01 li:eq(7)').click(function() {
+			$('.tr_rechoth').hide();
+			$('.rechnum').text('₹50000.00');
+			$('.othbox').val('');
+		})
+		$(document).ready(function() {
+			$('.othbox').on('input propertychange', function() {
+				var num = $(this).val();
+				$('.rechnum').html(num + ".00Rs");
+			});
+		});
+	})
+
+	$(function() {
+		$('#doc-vld-msg').validator({
+			onValid: function(validity) {
+				$(validity.field).closest('.am-form-group').find('.am-alert').hide();
+			},
+			onInValid: function(validity) {
+				var $field = $(validity.field);
+				var $group = $field.closest('.am-form-group');
+				var $alert = $group.find('.am-alert');
+				// 使用自定义的提示信息 或 插件内置的提示信息
+				var msg = $field.data('validationMessage') || this.getValidationMessage(validity);
+
+				if(!$alert.length) {
+					$alert = $('<div class="am-alert am-alert-danger"></div>').hide().
+					appendTo($group);
+				}
+				$alert.html(msg).show();
+			}
+		});
+		//初始化
+		$.init();
+	});
+</script>
+
+</body>
+</html>
